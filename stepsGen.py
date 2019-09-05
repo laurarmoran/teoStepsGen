@@ -213,7 +213,7 @@ class TeoStepsGen:
         self.matlab_button = Button(self.visualiz_frame, text="MATLAB visualization", command=self.matlab_clicked)
         self.matlab_button.grid(row=14, column=9)
 
-        self.ros_button = Button(self.visualiz_frame, text="MATLAB visualization", command=self.ros_clicked)
+        self.ros_button = Button(self.visualiz_frame, text="ROS visualization", command=self.ros_clicked)
         self.ros_button.grid(row=15, column=9)
 
     def generate_clicked(self):
