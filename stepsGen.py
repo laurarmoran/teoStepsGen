@@ -42,8 +42,7 @@ class TeoStepsGen:
 
         ######### Embedding matplotlib canvas
         self.fig = Figure(figsize=(5, 4), dpi=100)
-        t = np.arange(0, 3, .01)
-        self.fig.add_subplot(111).plot(t, 2 * np.sin(2 * np.pi * t))
+        self.fig.add_subplot(111)
 
         self.canvas_title = Label(window, text="Foot motion", font=self.customFont)
         self.canvas_title.grid(row=0, column=2, columnspan=5)
@@ -51,7 +50,6 @@ class TeoStepsGen:
         self.canvas = FigureCanvasTkAgg(self.fig, master=window)  # A tk.DrawingArea.
         self.canvas.draw()
         self.canvas.get_tk_widget().grid(row=1, column=0, rowspan=12, columnspan=8, sticky=E+W)
-        #self.canvas.get_tk_widget().grid_rowconfigure(7, weight=0)
 
         ######## LabelFrame for Steps Generation
         self.stepsGen_frame = LabelFrame(window, text="Steps Generation", font=self.customFont)
@@ -163,16 +161,16 @@ class TeoStepsGen:
         self.arms_txt.configure(width=9)
 
         # Trajectory Buttons
-        self.feet_traj_button = Button(self.localMotion_frame, text="Feet Trajectory", command=self.feet_traj_button)
+        self.feet_traj_button = Button(self.localMotion_frame, text="Feet Trajectory", command=self.feet_traj_clicked)
         self.feet_traj_button.grid(row=14, column=2)
 
-        self.ZMP_traj_button = Button(self.localMotion_frame, text="ZMP Trajectory", command=self.ZMP_traj_button)
+        self.ZMP_traj_button = Button(self.localMotion_frame, text="ZMP Trajectory", command=self.ZMP_traj_clicked)
         self.ZMP_traj_button.grid(row=15, column=2)
 
-        self.CoG_traj_button = Button(self.localMotion_frame, text="ZMP Trajectory", command=self.CoG_traj_button)
+        self.CoG_traj_button = Button(self.localMotion_frame, text="ZMP Trajectory", command=self.CoG_traj_clicked)
         self.CoG_traj_button.grid(row=16, column=2)
 
-        self.arms_traj_button = Button(self.localMotion_frame, text="Arms Trajectory", command=self.arms_traj_button)
+        self.arms_traj_button = Button(self.localMotion_frame, text="Arms Trajectory", command=self.arms_traj_clicked)
         self.arms_traj_button.grid(row=17, column=2)
 
         ######## LabelFrame for CoG Generation
@@ -218,7 +216,7 @@ class TeoStepsGen:
         self.whole_traj_button = Button(self.plots_frame, text="Whole trajectory", command=self.whole_traj_clicked)
         self.whole_traj_button.grid(row=14, column=7)
 
-        self.feet_traj_button = Button(self.plots_frame, text="Feet trajectory", command=self.feet_traj_button)
+        self.feet_traj_button = Button(self.plots_frame, text="Feet trajectory", command=self.feet_traj_clicked)
         self.feet_traj_button.grid(row=15, column=7)
 
         ######## LabelFrame for Joints Space
@@ -244,7 +242,10 @@ class TeoStepsGen:
         self.ros_button.grid(row=15, column=9)
 
     def generate_clicked(self):
-        self.lbl.configure(text='')
+        self.fig.clear()  # erases all data previously plotted
+        t = np.arange(0, 3, .01)
+        self.fig.add_subplot(111).plot(t, 2 * np.sin(2 * np.pi * t))
+        self.canvas.draw()
 
     def reset_clicked(self):
         self.numSteps_txt.delete(0,END)
@@ -257,26 +258,23 @@ class TeoStepsGen:
         self.d_txt.delete(0,END)
         return
 
-    def feet_traj_button(self):
+    def feet_traj_clicked(self):
         self.lbl.configure(text='')
 
-    def ZMP_traj_button(self):
+    def ZMP_traj_clicked(self):
         self.lbl.configure(text='')
 
-    def CoG_traj_button(self):
+    def CoG_traj_clicked(self):
         self.lbl.configure(text='')
 
-    def arms_traj_button(self):
+    def arms_traj_clicked(self):
         self.lbl.configure(text='')
 
     def stebBystep_clicked(self): # changes matplotlib chart
-        self.lbl.configure(text='')
-        # fig2 = Figure(figsize=(4, 4), dpi=100)
-        # t = np.arange(0, 5, .01)
-        # fig2.add_subplot(121).plot(t, 2.5 * np.cos(1.23 * np.pi * t))
-        # canvas2 = FigureCanvasTkAgg(fig2, master=window)  # A tk.DrawingArea.
-        # canvas2.draw()
-        # canvas2.get_tk_widget().grid(row=1, column=0, rowspan=12, columnspan=8, sticky=E + W)
+        self.fig.clear()    # erases all data previously plotted
+        t = np.arange(0, 5, .01)
+        self.fig.add_subplot(111).plot(t, np.cos(1.23 * np.pi * t))
+        self.canvas.draw()
 
     def matlab_clicked(self): # opens new window
         matlab_window = Toplevel(self.visualiz_frame)
@@ -289,11 +287,16 @@ class TeoStepsGen:
         ros_window.geometry("898x553")
 
     def whole_traj_clicked(self):
-        self.lbl.configure(text='')
+        self.fig.clear()    # erases all data previously plotted
+        t = np.arange(0, 10, .01)
+        self.fig.add_subplot(111).plot(t, np.cos(1.3 * np.pi * t))
+        self.canvas.draw()
 
     def feet_traj_clicked(self):
-        self.lbl.configure(text='')
-
+        self.fig.clear()  # erases all data previously plotted
+        t = np.arange(0, 7, .01)
+        self.fig.add_subplot(111).plot(t, np.sin(1.23 * np.pi * t))
+        self.canvas.draw()
 
 
 
