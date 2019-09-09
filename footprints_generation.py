@@ -1,14 +1,7 @@
-'''''
- Embedding matplotlib: https://matplotlib.org/3.1.0/gallery/user_interfaces/embedding_in_tk_sgskip.html
- Grid manager (text,buttons,image): https://effbot.org/tkinterbook/grid.htm
- Every widget: https://learn.sparkfun.com/tutorials/python-gui-guide-introduction-to-tkinter/all
-'''''
-
-import tkinter
 from tkinter import *
-#from tkinter.ttk import *
 import tkinter.font as tkFont
 from matplotlib.backends.backend_tkagg import (FigureCanvasTkAgg, NavigationToolbar2Tk)
+from main import *
 
 # Implement the default Matplotlib key bindings.
 from matplotlib.backend_bases import key_press_handler
@@ -17,28 +10,11 @@ from matplotlib.figure import Figure
 import numpy as np
 
 
-''''
-toolbar = NavigationToolbar2Tk(canvas, window)
-toolbar.update()
-canvas.get_tk_widget().pack(side=tkinter.LEFT, fill=tkinter.NONE, expand=0)
-
-
-def on_key_press(event):
-    print("you pressed {}".format(event.key))
-    key_press_handler(event, canvas, toolbar)
-
-
-canvas.mpl_connect("key_press_event", on_key_press)
-'''''
-
-#         self.stepsGen_frame.grid_columnconfigure(7, weight=0)
-
-
-class TeoStepsGen:
+class footprints_generation:
 
     def __init__(self, window):
 
-        self.customFont = tkFont.Font(family="Arial black", size=13)
+        self.customFont = tkFont.Font(family="Arial black", size=13, weight="bold")
 
         ######### Embedding matplotlib canvas
         self.fig = Figure(figsize=(5, 4), dpi=100)
@@ -298,16 +274,3 @@ class TeoStepsGen:
         self.fig.add_subplot(111).plot(t, np.sin(1.23 * np.pi * t))
         self.canvas.draw()
 
-
-
-def main():
-    window = Tk()
-    win = TeoStepsGen(window)
-    window.title("TEO Steps Generator")
-    window.geometry("898x553")
-
-    window.mainloop()
-
-
-if __name__ == '__main__':
-    main()
