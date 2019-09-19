@@ -1,21 +1,9 @@
-'''''
- Embedding matplotlib: https://matplotlib.org/3.1.0/gallery/user_interfaces/embedding_in_tk_sgskip.html
- Grid manager (text,buttons,image): https://effbot.org/tkinterbook/grid.htm
- Every widget: https://learn.sparkfun.com/tutorials/python-gui-guide-introduction-to-tkinter/all
-'''''
 
-import tkinter
 from tkinter import *
-#from tkinter.ttk import *
 import tkinter.font as tkFont
-from matplotlib.backends.backend_tkagg import (FigureCanvasTkAgg, NavigationToolbar2Tk)
 
-# Implement the default Matplotlib key bindings.
-from matplotlib.backend_bases import key_press_handler
-from matplotlib.figure import Figure
-
-import numpy as np
 from footprints_generation import *
+from steps_generation import *
 
 
 ''''
@@ -46,9 +34,8 @@ class TeoStepsGen:
         self.footprintsGenButton = Button(root, text="Footprints Generation", command=self.footprintsGen_clicked, font=self.button_font)
         self.footprintsGenButton.grid(row=6, column=0, sticky=W + E)
 
-        self.stepsGenButton = Button(root, text="Steps Generation", command=self.stepsGen_clicked, font=self.button_font)
+        self.stepsGenButton = Button(root, text="Steps Control", command=self.stepsGen_clicked, font=self.button_font)
         self.stepsGenButton.grid(row=7, column=0, sticky=W + E)
-
 
     def footprintsGen_clicked(self):
         window = Tk()
@@ -58,10 +45,9 @@ class TeoStepsGen:
 
     def stepsGen_clicked(self):
         window = Tk()
-        footprints_generation(window)
+        steps_generation(window)
         window.title("Steps Generation")
-        window.geometry("898x553")
-        window.mainloop()
+        window.geometry("498x253")
 
 def main():
     root = Tk()

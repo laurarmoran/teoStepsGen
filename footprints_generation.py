@@ -27,7 +27,7 @@ class footprints_generation:
         self.canvas.draw()
         self.canvas.get_tk_widget().grid(row=1, column=0, rowspan=12, columnspan=8, sticky=E+W)
 
-        ######## LabelFrame for Steps Generation
+        ######## Steps Generation
         self.stepsGen_frame = LabelFrame(window, text="Steps Generation", font=self.customFont)
         self.stepsGen_frame.grid(row=1, column=8, rowspan=12, columnspan=2)
 
@@ -100,7 +100,7 @@ class footprints_generation:
         self.resetButton = Button(self.stepsGen_frame, text="Reset", command=self.reset_clicked)
         self.resetButton.grid(row=12, column=9, sticky=W+E)
 
-        ######## LabelFrame for Local Motion
+        ######## Local Motion
         self.localMotion_frame = LabelFrame(window, text="Local Motion", font=self.customFont)
         self.localMotion_frame.grid(row=13, column=0, rowspan=5, columnspan=3)
 
@@ -149,7 +149,7 @@ class footprints_generation:
         self.arms_traj_button = Button(self.localMotion_frame, text="Arms Trajectory", command=self.arms_traj_clicked)
         self.arms_traj_button.grid(row=17, column=2)
 
-        ######## LabelFrame for CoG Generation
+        ######## CoG Generation
         self.CoGgeneration_frame = LabelFrame(window, text="CoG Generation", font=self.customFont)
         self.CoGgeneration_frame.grid(row=13, column=3, rowspan=5, columnspan=4, sticky=N+S)
 
@@ -183,7 +183,7 @@ class footprints_generation:
         self.dash_txt = Entry(self.CoGgeneration_frame, width=5)
         self.dash_txt.grid(row=16, column=6)
 
-        ######## LabelFrame for Plots
+        ######## Plots
         self.plots_frame = LabelFrame(window, text="Plots", font=self.customFont)
         self.plots_frame.grid(row=13, column=7, rowspan=5, sticky=N+S)
         self.plots_frame.grid_rowconfigure(14, weight=1)
@@ -195,7 +195,7 @@ class footprints_generation:
         self.feet_traj_button = Button(self.plots_frame, text="Feet trajectory", command=self.feet_traj_clicked)
         self.feet_traj_button.grid(row=15, column=7)
 
-        ######## LabelFrame for Joints Space
+        ######## Joints Space
         self.jointsSpace_frame = LabelFrame(window, text="Joints Space", font=self.customFont)
         self.jointsSpace_frame.grid(row=13, column=8, rowspan=5, sticky=N+S)
         self.jointsSpace_frame.grid_rowconfigure(14, weight=2)
@@ -205,7 +205,7 @@ class footprints_generation:
         self.stepBystep_button = Button(self.jointsSpace_frame, text="Step by step", command=self.stebBystep_clicked)
         self.stepBystep_button.grid(row=14, column=8, sticky=W+E)
 
-        ######## LabelFrame for Visualization
+        ######## Visualization
         self.visualiz_frame = LabelFrame(window, text="Visualization", font=self.customFont)
         self.visualiz_frame.grid(row=13, column=9, rowspan=5, sticky=N+S)
         self.visualiz_frame.grid_rowconfigure(14, weight=1)
@@ -273,4 +273,3 @@ class footprints_generation:
         t = np.arange(0, 7, .01)
         self.fig.add_subplot(111).plot(t, np.sin(1.23 * np.pi * t))
         self.canvas.draw()
-
