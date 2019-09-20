@@ -1,7 +1,6 @@
 from tkinter import *
 import tkinter.font as tkFont
 from matplotlib.backends.backend_tkagg import (FigureCanvasTkAgg, NavigationToolbar2Tk)
-from main import *
 
 # Implement the default Matplotlib key bindings.
 from matplotlib.backend_bases import key_press_handler
@@ -10,28 +9,28 @@ from matplotlib.figure import Figure
 import numpy as np
 
 
-class footprints_generation:
+class footprintsGeneration:
 
     def __init__(self, window):
 
-        self.customFont = tkFont.Font(family="Arial black", size=13, weight="bold")
+        # Global settings -----------------------------------------------------------------------------------------
+        #self.customFont = tkFont.Font(family="Verdana")
+        self.labelFont = ('Helvetica', 26)
+        self.labelFrameFont = ('Helvetica', 13, 'bold')
+        self.buttonFont = ('Helvetica', 14)
 
-        ######### Embedding matplotlib canvas
+        # Embedding matplotlib canvas -----------------------------------------------------------------------------
         self.fig = Figure(figsize=(5, 4), dpi=100)
         self.fig.add_subplot(111)
-
-        self.canvas_title = Label(window, text="Foot motion", font=self.customFont)
-        self.canvas_title.grid(row=0, column=2, columnspan=5)
-
+        self.fig.suptitle("Foot motion")
         self.canvas = FigureCanvasTkAgg(self.fig, master=window)  # A tk.DrawingArea.
         self.canvas.draw()
         self.canvas.get_tk_widget().grid(row=1, column=0, rowspan=12, columnspan=8, sticky=E+W)
 
-        ######## Steps Generation
-        self.stepsGen_frame = LabelFrame(window, text="Steps Generation", font=self.customFont)
+        # Steps Generation ----------------------------------------------------------------------------------------
+        self.stepsGen_frame = LabelFrame(window, text="Steps Generation", font=self.labelFrameFont)
         self.stepsGen_frame.grid(row=1, column=8, rowspan=12, columnspan=2)
 
-        # Steps Generation
         self.numSteps = Label(self.stepsGen_frame, text="Number of steps")
         self.numSteps.grid(row=2, column=8)
         self.numSteps_txt = Entry(self.stepsGen_frame, width=10)
@@ -50,8 +49,6 @@ class footprints_generation:
         self.init_var.set(" ")  # default value
         self.initFloatFoot_txt = OptionMenu(self.stepsGen_frame, self.init_var, *self.data)
         self.initFloatFoot_txt.grid(row=14, column=1)
-        #self.initFloatFoot_txt.configure(width=7)
-
         self.initFloatFoot_txt.configure(width=9)
         self.initFloatFoot_txt.grid(row=4, column=9)
 
@@ -93,18 +90,16 @@ class footprints_generation:
         self.d_txt.grid(row=11, column=9)
 
         # Generate & Reset Buttons
-        self.generateButton = Button(self.stepsGen_frame, text="Generate", command=self.generate_clicked)
+        self.generateButton = Button(self.stepsGen_frame, text="Generate", font=('Helvetica', 16), command=self.generate_clicked)
         self.generateButton.grid(row=12, column=8, sticky=W+E)
-        #self.generateButton.configure(background='#28b0b1')
 
-        self.resetButton = Button(self.stepsGen_frame, text="Reset", command=self.reset_clicked)
+        self.resetButton = Button(self.stepsGen_frame, text="Reset", font=('Helvetica', 16), command=self.reset_clicked)
         self.resetButton.grid(row=12, column=9, sticky=W+E)
 
-        ######## Local Motion
-        self.localMotion_frame = LabelFrame(window, text="Local Motion", font=self.customFont)
+        # Local Motion ---------------------------------------------------------------------------------------
+        self.localMotion_frame = LabelFrame(window, text="Local Motion", font=self.labelFrameFont)
         self.localMotion_frame.grid(row=13, column=0, rowspan=5, columnspan=3)
 
-        # Local Motion
         self.feet = Label(self.localMotion_frame, text="Feet")
         self.feet.grid(row=14, column=0)
         self.data_localMotion = ("Polynomial 1", "Polynomial 2", "Polynomial 3")
@@ -137,20 +132,24 @@ class footprints_generation:
         self.arms_txt.configure(width=9)
 
         # Trajectory Buttons
-        self.feet_traj_button = Button(self.localMotion_frame, text="Feet Trajectory", command=self.feet_traj_clicked)
+        self.feet_traj_button = Button(self.localMotion_frame, text="Feet Trajectory",
+                                       font=self.buttonFont, command=self.feet_traj_clicked)
         self.feet_traj_button.grid(row=14, column=2)
 
-        self.ZMP_traj_button = Button(self.localMotion_frame, text="ZMP Trajectory", command=self.ZMP_traj_clicked)
+        self.ZMP_traj_button = Button(self.localMotion_frame, text="ZMP Trajectory",
+                                      font=self.buttonFont, command=self.ZMP_traj_clicked)
         self.ZMP_traj_button.grid(row=15, column=2)
 
-        self.CoG_traj_button = Button(self.localMotion_frame, text="ZMP Trajectory", command=self.CoG_traj_clicked)
+        self.CoG_traj_button = Button(self.localMotion_frame, text="ZMP Trajectory",
+                                      font=self.buttonFont, command=self.CoG_traj_clicked)
         self.CoG_traj_button.grid(row=16, column=2)
 
-        self.arms_traj_button = Button(self.localMotion_frame, text="Arms Trajectory", command=self.arms_traj_clicked)
+        self.arms_traj_button = Button(self.localMotion_frame, text="Arms Trajectory",
+                                       font=self.buttonFont, command=self.arms_traj_clicked)
         self.arms_traj_button.grid(row=17, column=2)
 
-        ######## CoG Generation
-        self.CoGgeneration_frame = LabelFrame(window, text="CoG Generation", font=self.customFont)
+        # CoG Generation ----------------------------------------------------------------------------------------
+        self.CoGgeneration_frame = LabelFrame(window, text="CoG Generation", font=self.labelFrameFont)
         self.CoGgeneration_frame.grid(row=13, column=3, rowspan=5, columnspan=4, sticky=N+S)
 
         self.Lambda = Label(self.CoGgeneration_frame, text="Lambda")
@@ -183,44 +182,50 @@ class footprints_generation:
         self.dash_txt = Entry(self.CoGgeneration_frame, width=5)
         self.dash_txt.grid(row=16, column=6)
 
-        ######## Plots
-        self.plots_frame = LabelFrame(window, text="Plots", font=self.customFont)
+        # Plots ------------------------------------------------------------------------------------------------
+        self.plots_frame = LabelFrame(window, text="Plots", font=self.labelFrameFont)
         self.plots_frame.grid(row=13, column=7, rowspan=5, sticky=N+S)
         self.plots_frame.grid_rowconfigure(14, weight=1)
         self.plots_frame.grid_rowconfigure(15, weight=1)
 
-        self.whole_traj_button = Button(self.plots_frame, text="Whole trajectory", command=self.whole_traj_clicked)
+        self.whole_traj_button = Button(self.plots_frame, text="Whole trajectory",
+                                        font=self.buttonFont, command=self.whole_traj_clicked)
         self.whole_traj_button.grid(row=14, column=7)
 
-        self.feet_traj_button = Button(self.plots_frame, text="Feet trajectory", command=self.feet_traj_clicked)
+        self.feet_traj_button = Button(self.plots_frame, text="Feet trajectory",
+                                       font=self.buttonFont, command=self.feet_traj_clicked)
         self.feet_traj_button.grid(row=15, column=7)
 
-        ######## Joints Space
-        self.jointsSpace_frame = LabelFrame(window, text="Joints Space", font=self.customFont)
+        # Joints Space -----------------------------------------------------------------------------------------
+        self.jointsSpace_frame = LabelFrame(window, text="Joints Space", font=self.labelFrameFont)
         self.jointsSpace_frame.grid(row=13, column=8, rowspan=5, sticky=N+S)
         self.jointsSpace_frame.grid_rowconfigure(14, weight=2)
         self.jointsSpace_frame.grid_rowconfigure(15, weight=1)
         self.jointsSpace_frame.grid_columnconfigure(8, weight=1)
 
-        self.stepBystep_button = Button(self.jointsSpace_frame, text="Step by step", command=self.stebBystep_clicked)
+        self.stepBystep_button = Button(self.jointsSpace_frame, text="Step by step",
+                                        font=self.buttonFont, command=self.stebBystep_clicked)
         self.stepBystep_button.grid(row=14, column=8, sticky=W+E)
 
-        ######## Visualization
-        self.visualiz_frame = LabelFrame(window, text="Visualization", font=self.customFont)
+        # Visualization ------------------------------------------------------------------------------------------
+        self.visualiz_frame = LabelFrame(window, text="Visualization", font=self.labelFrameFont)
         self.visualiz_frame.grid(row=13, column=9, rowspan=5, sticky=N+S)
         self.visualiz_frame.grid_rowconfigure(14, weight=1)
         self.visualiz_frame.grid_rowconfigure(15, weight=1)
 
-        self.matlab_button = Button(self.visualiz_frame, text="MATLAB visualization", command=self.matlab_clicked)
+        self.matlab_button = Button(self.visualiz_frame, text="MATLAB visualization",
+                                    font=self.buttonFont, command=self.matlab_clicked)
         self.matlab_button.grid(row=14, column=9)
 
-        self.ros_button = Button(self.visualiz_frame, text="ROS visualization", command=self.ros_clicked)
+        self.ros_button = Button(self.visualiz_frame, text="ROS visualization",
+                                 font=self.buttonFont, command=self.ros_clicked)
         self.ros_button.grid(row=15, column=9)
 
     def generate_clicked(self):
         self.fig.clear()  # erases all data previously plotted
         t = np.arange(0, 3, .01)
         self.fig.add_subplot(111).plot(t, 2 * np.sin(2 * np.pi * t))
+        self.fig.suptitle("Foot motion")
         self.canvas.draw()
 
     def reset_clicked(self):
@@ -250,6 +255,7 @@ class footprints_generation:
         self.fig.clear()    # erases all data previously plotted
         t = np.arange(0, 5, .01)
         self.fig.add_subplot(111).plot(t, np.cos(1.23 * np.pi * t))
+        self.fig.suptitle("Foot motion")
         self.canvas.draw()
 
     def matlab_clicked(self): # opens new window
@@ -266,10 +272,12 @@ class footprints_generation:
         self.fig.clear()    # erases all data previously plotted
         t = np.arange(0, 10, .01)
         self.fig.add_subplot(111).plot(t, np.cos(1.3 * np.pi * t))
+        self.fig.suptitle("Foot motion")
         self.canvas.draw()
 
     def feet_traj_clicked(self):
         self.fig.clear()  # erases all data previously plotted
         t = np.arange(0, 7, .01)
         self.fig.add_subplot(111).plot(t, np.sin(1.23 * np.pi * t))
+        self.fig.suptitle("Foot motion")
         self.canvas.draw()
