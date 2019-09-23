@@ -140,7 +140,7 @@ class footprintsGeneration:
                                       font=self.buttonFont, command=self.ZMP_traj_clicked)
         self.ZMP_traj_button.grid(row=15, column=2)
 
-        self.CoG_traj_button = Button(self.localMotion_frame, text="ZMP Trajectory",
+        self.CoG_traj_button = Button(self.localMotion_frame, text="COG Trajectory",
                                       font=self.buttonFont, command=self.CoG_traj_clicked)
         self.CoG_traj_button.grid(row=16, column=2)
 

@@ -70,4 +70,4 @@ class stepsGeneration:
         designStep_window = Tk()
         designStep(designStep_window)
         designStep_window.title("Design Step")
-        designStep_window.geometry("898x553")
+        designStep_window.geometry("698x653")
