@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="7fefe546-74ca-4275-8054-92e5d388ca2a" name="Default Changelist" comment="" />
+    <list default="true" id="7fefe546-74ca-4275-8054-92e5d388ca2a" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/design_step.py" beforeDir="false" afterPath="$PROJECT_DIR$/design_step.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/footprints_generation.py" beforeDir="false" afterPath="$PROJECT_DIR$/footprints_generation.py" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

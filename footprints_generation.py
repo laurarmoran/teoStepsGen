@@ -240,16 +240,16 @@ class footprintsGeneration:
         return
 
     def feet_traj_clicked(self):
-        self.lbl.configure(text='')
+        print("Feet trajectory button clicked")
 
     def ZMP_traj_clicked(self):
-        self.lbl.configure(text='')
+        print("ZMP trajectory button clicked")
 
     def CoG_traj_clicked(self):
-        self.lbl.configure(text='')
+        print("CoG trajectory button clicked")
 
     def arms_traj_clicked(self):
-        self.lbl.configure(text='')
+        print("Arms trajectory button clicked")
 
     def stebBystep_clicked(self): # changes matplotlib chart
         self.fig.clear()    # erases all data previously plotted
