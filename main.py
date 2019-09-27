@@ -1,12 +1,7 @@
-
 from tkinter import *
 import tkinter.font as tkFont
-
 from footprints_generation import *
 from steps_generation import *
-#from PIL import ImageTk, Image
-from matplotlib.backends.backend_tkagg import (FigureCanvasTkAgg, NavigationToolbar2Tk)
-from matplotlib.figure import Figure
 
 
 class TeoStepsGen:

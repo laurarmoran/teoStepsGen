@@ -3,8 +3,6 @@ import tkinter.font as tkFont
 from matplotlib.backends.backend_tkagg import (FigureCanvasTkAgg, NavigationToolbar2Tk)
 from matplotlib.figure import Figure
 
-# Implement the default Matplotlib key bindings.
-from matplotlib.backend_bases import key_press_handler
 
 import numpy as np
 
