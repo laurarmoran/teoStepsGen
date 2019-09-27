@@ -5,6 +5,8 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/design_step.py" beforeDir="false" afterPath="$PROJECT_DIR$/design_step.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/footprints_generation.py" beforeDir="false" afterPath="$PROJECT_DIR$/footprints_generation.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/steps_generation.py" beforeDir="false" afterPath="$PROJECT_DIR$/steps_generation.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />

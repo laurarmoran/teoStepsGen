@@ -15,7 +15,7 @@ class designStep:
 
         # Double Support ---------------------------------------------------------------------------------------
         self.doubleSupp_frame = LabelFrame(root, text="Double Support", font=self.labelFrameFont)
-        self.doubleSupp_frame.grid(row=1, column=0, columnspan=6, sticky=W+E)
+        self.doubleSupp_frame.grid(row=1, column=0, columnspan=4, sticky=W+E)
 
         ### Delta CoM (m) -----------------------------------------------
         self.deltaCoM_frame = LabelFrame(self.doubleSupp_frame, text="Delta CoM (m)", font=self.labelFrameFont)
@@ -37,11 +37,9 @@ class designStep:
         self.deltaz_txt_1.grid(row=4, column=2)
 
 
-
-
         # Simple Support ---------------------------------------------------------------------------------------
         self.simpleSupp_frame = LabelFrame(root, text="Simple Support", font=self.labelFrameFont)
-        self.simpleSupp_frame.grid(row=5, column=0, columnspan=6, sticky=W + E)
+        self.simpleSupp_frame.grid(row=5, column=0, columnspan=4, sticky=W + E)
 
         ### Delta CoM Phase-1 (m) -----------------------------------------------
         self.deltaCoM_phase1_frame = LabelFrame(self.simpleSupp_frame, text="Delta CoM Phase-1 (m)", font=self.labelFrameFont)
@@ -124,7 +122,7 @@ class designStep:
 
         # Double Support ---------------------------------------------------------------------------------------
         self.doubleSupp_frame_2 = LabelFrame(root, text="Double Support", font=self.labelFrameFont)
-        self.doubleSupp_frame_2.grid(row=14, column=0, columnspan=6, sticky=W + E)
+        self.doubleSupp_frame_2.grid(row=14, column=0, columnspan=4, sticky=W + E)
 
         ### Delta CoM (m) -----------------------------------------------
         self.deltaCoM_frame_2 = LabelFrame(self.doubleSupp_frame_2, text="Delta CoM (m)", font=self.labelFrameFont)
@@ -147,7 +145,7 @@ class designStep:
 
         # Arms Movement ---------------------------------------------------------------------------------------
         self.arms_movement_frame = LabelFrame(root, text="Arms Movement", font=self.labelFrameFont)
-        self.arms_movement_frame.grid(row=18, column=0, columnspan=6, sticky=W + E)
+        self.arms_movement_frame.grid(row=18, column=0, columnspan=4, sticky=W + E)
 
         ### Delta Right Hand -----------------------------------------------
         self.deltaRightHand_frame = LabelFrame(self.arms_movement_frame, text="Delta Right Hand (m)", font=self.labelFrameFont)
@@ -193,10 +191,9 @@ class designStep:
         self.numberSteps_txt = Entry(root, width=8)
         self.numberSteps_txt.grid(row=25, column=3)
 
-
         ### Interpolation 1 -----------------------------------------------
         self.interpolation_frame_1 = LabelFrame(self.doubleSupp_frame, text="Interpolation", font=self.labelFrameFont)
-        self.interpolation_frame_1.grid(row=2, column=3, rowspan=3, columnspan=3, sticky=W + E)
+        self.interpolation_frame_1.grid(row=2, column=3, rowspan=3, sticky=W + E)
         self.interpolation_frame_1.grid_columnconfigure(3, weight=1)
 
         self.data_interpolation = ("Linear", "")
@@ -271,11 +268,11 @@ class designStep:
         self.interpolation_txt_6.configure(width=15)
 
         # Buttons -------------------------------------------------------------------------------------------------
-        self.generate_button = Button(root, text="Generate", command=self.generate_clicked, font=self.buttonFont)
+        self.generate_button = Button(root, text="Generate Step", command=self.generate_clicked, font=self.buttonFont)
         self.generate_button.grid(row=24, column=0, rowspan=2, sticky=W+E)
 
         self.newStep_button = Button(root, text="New Step", command=self.newStep_clicked, font=self.buttonFont)
-        self.generate_button.grid(row=24, column=1, rowspan=2, sticky=W+E)
+        self.newStep_button.grid(row=24, column=1, rowspan=2, sticky=W+E)
 
         self.resetTrajectory_button = Button(root, text="Reset Trajectory", command=self.resetTrajectory_clicked, font=self.buttonFont)
         self.resetTrajectory_button.grid(row=24, column=2, rowspan=2, sticky=W + E)
@@ -319,7 +316,7 @@ class designStep:
         self.deltax_txt_8.delete(0, END)
         self.deltay_txt_8.delete(0, END)
         self.deltaz_txt_8.delete(0, END)
-        
+
 
     def matlab_clicked(self): # opens new window
         matlab_window = Tk()

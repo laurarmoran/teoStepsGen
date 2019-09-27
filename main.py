@@ -4,21 +4,9 @@ import tkinter.font as tkFont
 
 from footprints_generation import *
 from steps_generation import *
-
-
-''''
-toolbar = NavigationToolbar2Tk(canvas, window)
-toolbar.update()
-canvas.get_tk_widget().pack(side=tkinter.LEFT, fill=tkinter.NONE, expand=0)
-
-
-def on_key_press(event):
-    print("you pressed {}".format(event.key))
-    key_press_handler(event, canvas, toolbar)
-
-
-canvas.mpl_connect("key_press_event", on_key_press)
-'''''
+#from PIL import ImageTk, Image
+from matplotlib.backends.backend_tkagg import (FigureCanvasTkAgg, NavigationToolbar2Tk)
+from matplotlib.figure import Figure
 
 
 class TeoStepsGen:
@@ -28,13 +16,20 @@ class TeoStepsGen:
         self.buttonFont = tkFont.Font(family='Helvetica', size=20)
 
         self.teoStepsGen = Label(root, text="TEO Steps Generator", font= self.labelFont)
-        self.teoStepsGen.grid(row=0, column=0, columnspan=3, sticky=W+E)
+        self.teoStepsGen.grid(row=1, column=0, columnspan=3, sticky=W+E)
 
         self.footprintsGenButton = Button(root, text="Footprints Generation", command=self.footprintsGen_clicked, font=self.buttonFont)
-        self.footprintsGenButton.grid(row=6, column=1, sticky=W+E)
+        self.footprintsGenButton.grid(row=3, column=1, sticky=W+E)
 
         self.stepsGenButton = Button(root, text="Steps Control", command=self.stepsGen_clicked, font=self.buttonFont)
-        self.stepsGenButton.grid(row=7, column=1, sticky=W+E)
+        self.stepsGenButton.grid(row=4, column=1, sticky=W+E)
+
+        # Adding photo to main window
+        img = PhotoImage(file="img/teo.pgm")
+        label = Label(image=img)
+        label.image = img
+        label.grid(row=0, column=4, rowspan=8, sticky=E)
+
 
     def footprintsGen_clicked(self):
         window = Tk()
@@ -52,7 +47,7 @@ def main():
     root = Tk()
     TeoStepsGen(root)
     root.title("TEO Steps Generator")
-    root.geometry("600x300")
+    root.geometry("650x300")
 
     root.mainloop()
 
